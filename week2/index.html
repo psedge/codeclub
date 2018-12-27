@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<head>
+    <style type="text/css" media="screen">
+
+    </style>
+
+    <title>Turtle</title>
+
+    <link href="../assets/codeclub.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+SC" rel="stylesheet">
+    <script src="../assets/src-noconflict/ace.js" type="text/javascript" charSet="utf-8"></script>
+    <script src="../assets/jquery-1.6.4.min.js" type="text/javascript" charSet="utf-8"></script>
+</head>
+
+<body>
+<section id="order">
+    <header>
+        <a class="enabled" onclick="showCode()">&lt;code&gt;</a>
+        <h2>Turtle</h2>
+        <p>Can you code the turtle to create patterns on the page?</p>
+    </header>
+    <main>
+<div id="code">// Let's move the turtle forward 50 places
+forward(50);
+
+// Great, now turn him 90* to the left
+left(90);
+
+// Forward again
+forward(25);
+
+// Define a function to draw a circle
+function circle() {
+    for (var i=0; i < 360; i++) {
+        left(1);
+        forward(1);
+    }
+}
+circle();
+
+// Now we'll reset the board
+clear();
+
+// Can we spell code?
+penup();
+forward(120);
+pendown();
+
+// Draw the C
+forward(25);
+for (var i=0; i < 180; i++) {
+    forward(1);
+    left(1);
+}
+forward(25);
+
+penup();
+forward(85);
+pendown();
+
+// Draw the o
+circle();
+
+penup();
+forward(90);
+pendown();
+
+// Draw the d
+left(90);
+forward(120);
+right(90);
+forward(25);
+for (var i=0; i<180; i++) {
+    right(1);
+    forward(1);
+}
+forward(25);
+
+penup()
+right(180);
+forward(200);
+pendown();
+
+// Draw the e
+left(180);
+forward(30);
+for (var i=0; i<180; i++) {
+    right(1);
+    forward(1);
+}
+for (var i=0; i<90; i++) {
+    right(1);
+    forward(0.75);
+}
+forward(10);
+right(90);
+forward(75);
+        </div>
+    </main>
+</section>
+<section id="display">
+    <a onclick="play()">&gt; play</a>
+    <canvas id="turtlecanvas" width="800" height="1080"></canvas>
+    <canvas id="imagecanvas" width="800" height="1080" style="display: block; top: 0px; position: absolute;"></canvas>
+</section>
+
+<script src="../assets/d3.v3.min.js"></script>
+<script src="../assets/board.js"></script>
+<script src="../assets/turtle.js" type="text/javascript" charSet="utf-8"></script>
+<script>
+    colour(255, 255, 255, 1);
+</script>
+</body>

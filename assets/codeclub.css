@@ -1,0 +1,100 @@
+body {
+    margin: 0;
+    font-family: 'Noto Sans SC', sans-serif;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    background: #fafafa;
+}
+header {
+    background-color: white;
+    width: 100%;
+    height: 50px;
+    border-bottom: 1px solid #0a0a0a;
+    padding: 10px;
+}
+header p {
+    margin-top: -10px;
+    font-size: 10pt;
+}
+main {
+    width: 100%;
+    height: 100%
+}
+
+.row {
+    border: 1px solid #0a0a0a;
+    background-color: #fafafa;
+    stroke: #000;
+    stroke-width: 1;
+}
+rect {
+    stroke: #ccc;
+    stroke-width: 1;
+    margin: -5px;
+    fill: rgba(255,255,255, 0.8)
+}
+text {
+    stroke: none;
+    text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, 0 -1px 0 #fff, -1px 0 0 #fff;
+    cursor: move;
+}
+div#code { display: block; position: relative; height: calc(100% - 70px); }
+section#order, section#display {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    float: left;
+    display: block;
+    height: 100vh;
+}
+
+section#order { width: 60% }
+section#display { width: 40%; }
+
+section#order a {
+    position: relative;
+    font-size: 13px;
+    border-radius: 5px;
+    border: 1px solid gray;
+    padding: 5px;
+    margin: 10px;
+    color: #0a0a0a;
+    float: right;
+    text-decoration: none;
+}
+section#order a:first-of-type {
+    margin-right: 25px;
+}
+
+section#order h2 {
+    margin-top: 0;
+    font-size: 12pt;
+}
+
+section#order a:first-of-type { background-color: #111; color: lightgreen }
+section#order a:last-of-type { background-color: #fff;  }
+section#order a:first-of-type:hover { color: #ccc; }
+section#order a:last-of-type:hover { color: #ccc; }
+
+section#order a.enabled { box-shadow: 4px 4px 2px #ccc; font-weight: bold}
+
+section#order main .CodeMirror {
+    width: 100%;
+    height: 100vh;
+    display: none;
+}
+
+section#display {
+    background-color: black;
+}
+section#display a { color: white; margin: 10px; position: absolute; z-index: 2;}
+
+section#display div {
+    width: 100px;
+    height: 100px;
+    display: block;
+    clear: both;
+    margin: 28% auto 28% auto;
+    border-radius: 50px;
+    border: 2px solid whitesmoke;
+}

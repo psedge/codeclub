@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<head>
+    <title>Traffic Lights</title>
+
+    <link href="../assets/codeclub.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+SC" rel="stylesheet">
+    <script src="../assets/src-noconflict/ace.js" type="text/javascript" charSet="utf-8"></script>
+
+    <style type="text/css" media="screen">
+        section#order { width: 80% }
+        section#display { width: 20%; }
+    </style>
+</head>
+
+<body>
+<section id="order">
+    <header>
+        <a class="enabled" onclick="showCode()">&lt;code&gt;</a>
+        <h2>Traffic Lights</h2>
+        <p>Can you code a traffic light to show in the right order?</p>
+    </header>
+    <main>
+<div id="code">// This is the code that will run when we press 'play'
+// Lines that begin with // are comments, they aren't read by the computer!
+// Let's set up the colours for our lights.
+
+// We have 3 lights, topLight, middleLight, and bottomLight, which we can tell to turn on, turn off, or change colour
+// Let's set the lights to the right colour now!
+topLight.setColour("red");
+middleLight.setColour("yellow");
+bottomLight.setColour("green");
+
+// The first thing we want to do is to turn the red light on.
+topLight.on();
+
+// Now the middle light turns on
+middleLight.on();
+
+// Now turn them both off
+topLight.off();
+middleLight.off();
+
+// What do we want to do next? (hint: the bottom light turns on!)
+
+        </div>
+    </main>
+</section>
+<section id="display">
+    <a onclick="play()">&gt; play</a>
+    <div id="topLight"></div>
+    <div id="middleLight"></div>
+    <div id="bottomLight"></div>
+</section>
+
+<script src="../assets/d3.v3.min.js"></script>
+<script src="../assets/board.js"></script>
+
+<script>
+    var setColour = function(color) {
+        this.myColor = color
+    };
+    var lightDivs = [
+        document.getElementById("topLight"),
+        document.getElementById("middleLight"),
+        document.getElementById("bottomLight")
+    ];
+    lightDivs.forEach((item) => {
+        item.setColour = setColour;
+        item.on = () => {
+            item.style.backgroundColor = item.myColor;
+            
+        };
+        item.off = () => { item.style.backgroundColor = 'transparent'};
+    });
+
+    // Code play callback
+    async function playCode() {
+        editor.setReadOnly(true);
+        lines = editor.getValue().split("\n");
+        for (var i=0; i<lines.length;i++) {
+            editor.selection.clearSelection();
+            editor.moveCursorTo(i, 0);
+            if (lines[i].substring(0, 2) == '//' || lines[i].substring(0,2) == "") {
+                await new Promise(resolve => setTimeout(resolve, 50));
+                continue;
+            }
+
+            try {
+                eval(lines[i]);
+            } catch (err) {
+
+            }
+            await new Promise(resolve => setTimeout(resolve, 450));
+        }
+        editor.setReadOnly(false)
+    }
+</script>
+</body>
