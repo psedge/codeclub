@@ -8,6 +8,7 @@
 
     <title>Turtle</title>
 
+    <link rel="stylesheet" href="../assets/spectre.min.css">
     <link href="../assets/codeclub.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+SC" rel="stylesheet">
     <script src="../assets/src-noconflict/ace.js" type="text/javascript" charSet="utf-8"></script>
@@ -17,7 +18,6 @@
 <body>
 <section id="order">
     <header>
-        <a class="enabled" onclick="showCode()">&lt;code&gt;</a>
         <h2>Turtle</h2>
         <p>Can you code the turtle to create patterns on the page?</p>
     </header>
@@ -100,16 +100,26 @@ forward(75);
         </div>
     </main>
 </section>
+
+<script src="../assets/board.js"></script>
+
 <section id="display">
-    <a onclick="play()">&gt; play</a>
+    <button class="btn btn-success" id="play" onclick="play()">&gt; play</button>
+    <button class="btn btn-error" onclick="stop()">! stop</button>
     <canvas id="turtlecanvas" width="800" height="1080"></canvas>
     <canvas id="imagecanvas" width="800" height="1080" style="display: block; top: 0px; position: absolute;"></canvas>
 </section>
 
 <script src="../assets/d3.v3.min.js"></script>
-<script src="../assets/board.js"></script>
 <script src="../assets/turtle.js" type="text/javascript" charSet="utf-8"></script>
 <script>
+    lineWait = 400;
     colour(255, 255, 255, 1);
+    function play() {
+        clear();
+        goto(0,0);
+        angle(0);
+        playCode();
+    }
 </script>
 </body>

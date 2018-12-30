@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<head>
+    <title>Painting by Pixels</title>
+
+    <link rel="stylesheet" href="../assets/spectre.min.css">
+    <link href="../assets/codeclub.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+SC" rel="stylesheet">
+
+    <style type="text/css" media="screen">
+        section#order { width: 50% }
+        section#display { width: 50%; }
+    </style>
+
+    <script src="../assets/src-noconflict/ace.js" type="text/javascript" charSet="utf-8"></script>
+    <script src="../assets/jquery-1.6.4.min.js" type="text/javascript" charSet="utf-8"></script>
+</head>
+
+<body>
+<section id="order">
+    <header>
+        <h2>Painting by Pixels</h2>
+        <p>Colour the pixels to make a picture</p>
+    </header>
+    <main>
+<div id="code">// Let's draw a square
+
+        </div>
+    </main>
+</section>
+
+<script src="../assets/board.js"></script>
+
+<section id="display">
+    <button class="btn btn-success" id="play" onclick="play()">&gt; play</button>
+    <button class="btn btn-error" onclick="stop()">! stop</button>
+</section>
+
+<script src="../assets/d3.v3.min.js"></script>
+<script>
+    lineWait = 250;
+    function play() { playCode(); }
+
+    for (var y=0; y<10; y++) {
+        $("#display").append("<div class='row'>");
+        for (var i=0; i<10; i++) {
+            $("#display .row:last-of-type").append("<div></div>");
+        }
+        $("#display").append("</div>");
+    }
+</script>
+</body>

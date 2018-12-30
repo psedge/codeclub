@@ -6,14 +6,24 @@ editor.setOptions({
 });
 document.getElementById('code').style.fontSize='15px';
 
+var stopped = false;
+function stop() {
+    stopped = true;
+    document.getElementById("play").disabled = false;
+}
+
 // Code play callback
-async function play() {
+async function playCode() {
+    document.getElementById("play").disabled = true;
+    
     editor.setReadOnly(true);
     lines = editor.getValue().split("\n");
     var depth = 0;
     var block = "";
 
     for (var line=0; line<lines.length;line++) {
+        if (stopped) { stopped = false; return }
+
         editor.selection.clearSelection();
         editor.moveCursorTo(line, 0);
         if (lines[line].substring(0, 2) == '//' || lines[line].substring(0,2) == "") {
@@ -32,7 +42,9 @@ async function play() {
         } catch (err) {
             console.log(err)
         }
-        await new Promise(resolve => setTimeout(resolve, 450));
+        await new Promise(resolve => setTimeout(resolve, lineWait));
     }
     editor.setReadOnly(false)
+    document.getElementById("play").disabled = false;
 }
+

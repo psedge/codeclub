@@ -87,7 +87,13 @@ section#order main .CodeMirror {
 section#display {
     background-color: black;
 }
-section#display a { color: white; margin: 10px; position: absolute; z-index: 2;}
+section#display button {
+    margin: 10px;
+    position: absolute;
+    z-index: 2;
+}
+
+section#display button:nth-of-type(2) { margin-left: 100px; }
 
 section#display div {
     width: 100px;

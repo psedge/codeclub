@@ -4,7 +4,7 @@ The purpose of these interactive examples is to give 7-10 year olds an easy intr
 concepts using Javascript. There are a number of great resources out there already, but I found that most 
 of these were either entirely graphical (Scratch), or paid.
 
-It turns out that by 7, schools teaching IT in their curriculum have most likely introduced the kids to
+Schools teaching IT in their curriculum may have already introduced the kids to
 Scratch, and some parents may have already done some coding with them outside of the classroom- so these exercises try to start off slow
 enough to be widely inclusive, whilst still offering routes to explore, create, and h4ck.
 
@@ -42,7 +42,7 @@ In our pre-loaded example, show how we can use penup() and pendown(), along with
 and 'write out' a word.
 
 ### Outcomes
-* Introduce functions, and for loops.
+* Introduce inline functions, and for loops.
 * Get comfortable with directions, angles, movements in 2D space.
 * Show how we might programatically draw more complex shapes.
 

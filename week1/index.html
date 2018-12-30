@@ -3,6 +3,7 @@
 <head>
     <title>Traffic Lights</title>
 
+    <link rel="stylesheet" href="../assets/spectre.min.css">
     <link href="../assets/codeclub.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+SC" rel="stylesheet">
     <script src="../assets/src-noconflict/ace.js" type="text/javascript" charSet="utf-8"></script>
@@ -16,7 +17,6 @@
 <body>
 <section id="order">
     <header>
-        <a class="enabled" onclick="showCode()">&lt;code&gt;</a>
         <h2>Traffic Lights</h2>
         <p>Can you code a traffic light to show in the right order?</p>
     </header>
@@ -47,7 +47,8 @@ middleLight.off();
     </main>
 </section>
 <section id="display">
-    <a onclick="play()">&gt; play</a>
+    <button class="btn btn-success" id="play" onclick="play()">&gt; play</button>
+    <button class="btn btn-error" onclick="stop()">! stop</button>
     <div id="topLight"></div>
     <div id="middleLight"></div>
     <div id="bottomLight"></div>
@@ -57,6 +58,9 @@ middleLight.off();
 <script src="../assets/board.js"></script>
 
 <script>
+    lineWait = 400;
+    function play() { playCode() }
+
     var setColour = function(color) {
         this.myColor = color
     };
@@ -73,27 +77,5 @@ middleLight.off();
         };
         item.off = () => { item.style.backgroundColor = 'transparent'};
     });
-
-    // Code play callback
-    async function playCode() {
-        editor.setReadOnly(true);
-        lines = editor.getValue().split("\n");
-        for (var i=0; i<lines.length;i++) {
-            editor.selection.clearSelection();
-            editor.moveCursorTo(i, 0);
-            if (lines[i].substring(0, 2) == '//' || lines[i].substring(0,2) == "") {
-                await new Promise(resolve => setTimeout(resolve, 50));
-                continue;
-            }
-
-            try {
-                eval(lines[i]);
-            } catch (err) {
-
-            }
-            await new Promise(resolve => setTimeout(resolve, 450));
-        }
-        editor.setReadOnly(false)
-    }
 </script>
 </body>
