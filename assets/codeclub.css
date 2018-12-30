@@ -95,7 +95,7 @@ section#display button {
 
 section#display button:nth-of-type(2) { margin-left: 100px; }
 
-section#display div {
+section#display.week1 div {
     width: 100px;
     height: 100px;
     display: block;
@@ -103,4 +103,17 @@ section#display div {
     margin: 28% auto 28% auto;
     border-radius: 50px;
     border: 2px solid whitesmoke;
+}
+
+section#display.week3 div div {
+    width: 5%;
+    height: 5vh;
+    display: block;
+    float: left;
+    border-top: 1px solid #444;
+    border-left: 1px solid #444;
+}
+
+section#display.week3 div.row {
+    clear: both;
 }

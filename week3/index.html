@@ -24,30 +24,55 @@
         <p>Colour the pixels to make a picture</p>
     </header>
     <main>
-<div id="code">// Let's draw a square
+<div id="code">// Eyes first
+pixel(8,4).style.backgroundColor = "white";
+pixel(9,4).style.backgroundColor = "white";
 
-        </div>
+pixel(8,5).style.backgroundColor = "white";
+pixel(9,5).style.backgroundColor = "white";
+
+pixel(11,4).style.backgroundColor = "white";
+pixel(12,4).style.backgroundColor = "white";
+
+pixel(11,5).style.backgroundColor = "white";
+pixel(12,5).style.backgroundColor = "white";
+
+// then the nose
+pixel(10,7).style.backgroundColor = "yellow";
+
+// then the mouth
+pixel(10,7).style.backgroundColor = "#fff";
+pixel(10,7).style.backgroundColor = "#fff";
+pixel(10,7).style.backgroundColor = "#fff";
+pixel(10,7).style.backgroundColor = "#fff";
+pixel(10,7).style.backgroundColor = "#fff";
+
+</div>
     </main>
 </section>
 
 <script src="../assets/board.js"></script>
 
-<section id="display">
+<section id="display" class="week3">
     <button class="btn btn-success" id="play" onclick="play()">&gt; play</button>
     <button class="btn btn-error" onclick="stop()">! stop</button>
 </section>
 
 <script src="../assets/d3.v3.min.js"></script>
 <script>
-    lineWait = 250;
+    lineWait = 10;
     function play() { playCode(); }
-
-    for (var y=0; y<10; y++) {
+    var i=0;
+    for (var y=0; y<20; y++) {
         $("#display").append("<div class='row'>");
-        for (var i=0; i<10; i++) {
-            $("#display .row:last-of-type").append("<div></div>");
+        for (var x=0; x<20; x++) {
+            $("#display .row:last-of-type").append("<div id='"+y+","+x+"'></div>");
         }
         $("#display").append("</div>");
+    }
+
+    function pixel(x, y) {
+        return document.getElementById(y+","+x)
     }
 </script>
 </body>

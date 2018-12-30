@@ -43,6 +43,23 @@ and 'write out' a word.
 
 ### Outcomes
 * Introduce inline functions, and for loops.
+Friend requests
+Messages
+Notifications
+Account Settings
+Events
+Events
+Calendar
+We're gonna have some people round, come yeah?
+Birthdays
+Discover
+Hosting1
+Create Event
+English (UK) · English (US) · Polski · Español · Português (Brasil)
+Privacy · Terms · Advertising · AdChoices
+· Cookies ·
+More
+Facebook © 2018
 * Get comfortable with directions, angles, movements in 2D space.
 * Show how we might programatically draw more complex shapes.
 
