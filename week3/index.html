@@ -25,27 +25,31 @@
     </header>
     <main>
 <div id="code">// Eyes first
-pixel(8,4).style.backgroundColor = "white";
-pixel(9,4).style.backgroundColor = "white";
+pixel(7,4).style.backgroundColor = "grey";
+pixel(8,4).style.backgroundColor = "grey";
+pixel(7,5).style.backgroundColor = "grey";
+pixel(8,5).style.backgroundColor = "blue";
 
-pixel(8,5).style.backgroundColor = "white";
-pixel(9,5).style.backgroundColor = "white";
-
-pixel(11,4).style.backgroundColor = "white";
-pixel(12,4).style.backgroundColor = "white";
-
-pixel(11,5).style.backgroundColor = "white";
-pixel(12,5).style.backgroundColor = "white";
+pixel(11,4).style.backgroundColor = "grey";
+pixel(12,4).style.backgroundColor = "grey";
+pixel(11,5).style.backgroundColor = "grey";
+pixel(12,5).style.backgroundColor = "blue";
 
 // then the nose
+pixel(9,7).style.backgroundColor = "yellow";
 pixel(10,7).style.backgroundColor = "yellow";
 
 // then the mouth
-pixel(10,7).style.backgroundColor = "#fff";
-pixel(10,7).style.backgroundColor = "#fff";
-pixel(10,7).style.backgroundColor = "#fff";
-pixel(10,7).style.backgroundColor = "#fff";
-pixel(10,7).style.backgroundColor = "#fff";
+pixel(5,9).style.backgroundColor = "#fff";
+pixel(6,9).style.backgroundColor = "#fff";
+pixel(7,10).style.backgroundColor = "#fff";
+pixel(8,10).style.backgroundColor = "#fff";
+pixel(9,10).style.backgroundColor = "#fff";
+pixel(10,10).style.backgroundColor = "#fff";
+pixel(11,10).style.backgroundColor = "#fff";
+pixel(12,10).style.backgroundColor = "#fff";
+pixel(13,9).style.backgroundColor = "#fff";
+pixel(14,9).style.backgroundColor = "#fff";
 
 </div>
     </main>
@@ -61,7 +65,12 @@ pixel(10,7).style.backgroundColor = "#fff";
 <script src="../assets/d3.v3.min.js"></script>
 <script>
     lineWait = 10;
-    function play() { playCode(); }
+    function play() {
+        $("#display .row div").each(function() {
+            this.style.backgroundColor = "black";
+        });``
+        playCode();
+    }
     var i=0;
     for (var y=0; y<20; y++) {
         $("#display").append("<div class='row'>");
