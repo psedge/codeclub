@@ -3,10 +3,14 @@
 <head>
     <title>Traffic Lights</title>
 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <link rel="stylesheet" href="../assets/spectre.min.css">
+    <link rel="stylesheet" href="../assets/jquery-ui.min.css">
     <link href="../assets/codeclub.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+SC" rel="stylesheet">
     <script src="../assets/src-noconflict/ace.js" type="text/javascript" charSet="utf-8"></script>
+    <script src="../assets/jquery-3.3.1.min.js" type="text/javascript" charSet="utf-8"></script>
+    <script src="../assets/jquery-ui.min.js" type="text/javascript" charSet="utf-8"></script>
 
     <style type="text/css" media="screen">
         section#order { width: 80% }
@@ -19,6 +23,8 @@
     <header>
         <h2>Traffic Lights</h2>
         <p>Can you code a traffic light to show in the right order?</p>
+        <input type="text" id="username" />
+        <input type="hidden" id="week" value="1"/>
     </header>
     <main>
 <div id="code">// This is the code that will run when we press 'play'
@@ -43,12 +49,18 @@ middleLight.off();
 
 // What do we want to do next? (hint: the bottom light turns on!)
 
+
+
+
+
+// We can also call the following functions on the lights: .setHeight, .setWidth, .shake, .bounce, .puff, .pulse
+// Try them out!
         </div>
     </main>
 </section>
 <section id="display" class="week1">
-    <button class="btn btn-success" id="play" onclick="play()">&gt; play</button>
-    <button class="btn btn-error" onclick="stop()">! stop</button>
+    <button class="btn btn-success" id="play" onclick="play()"><i class="fas fa-play"></i> play</button>
+    <button class="btn btn-error" onclick="stop()"><i class="fas fa-stop"></i> stop</button>
     <div id="topLight"></div>
     <div id="middleLight"></div>
     <div id="bottomLight"></div>
@@ -61,9 +73,14 @@ middleLight.off();
     lineWait = 400;
     function play() { playCode() }
 
-    var setColour = function(color) {
-        this.myColor = color
-    };
+    var setColour = function(color) { this.myColor = color }
+    var setHeight = function(height) { this.style.height = height; }
+    var setWidth = function(width) { this.style.width = width; }
+    var shake = function() { $(this).effect('shake') };
+    var bounce = function() { $(this).effect('bounce') };
+    var puff = function() { $(this).effect('puff') };
+    var pulse = function() { $(this).effect('pulsate') };
+
     var lightDivs = [
         document.getElementById("topLight"),
         document.getElementById("middleLight"),
@@ -71,10 +88,13 @@ middleLight.off();
     ];
     lightDivs.forEach((item) => {
         item.setColour = setColour;
-        item.on = () => {
-            item.style.backgroundColor = item.myColor;
-            
-        };
+        item.setHeight = setHeight;
+        item.setWidth = setWidth;
+        item.shake = shake;
+        item.bounce = bounce;
+        item.puff = puff;
+        item.pulse = pulse;
+        item.on = () => { item.style.backgroundColor = item.myColor; };
         item.off = () => { item.style.backgroundColor = 'transparent'};
     });
 </script>

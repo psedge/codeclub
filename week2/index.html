@@ -8,11 +8,12 @@
 
     <title>Turtle</title>
 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <link rel="stylesheet" href="../assets/spectre.min.css">
     <link href="../assets/codeclub.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+SC" rel="stylesheet">
     <script src="../assets/src-noconflict/ace.js" type="text/javascript" charSet="utf-8"></script>
-    <script src="../assets/jquery-1.6.4.min.js" type="text/javascript" charSet="utf-8"></script>
+    <script src="../assets/jquery-3.3.1.min.js" type="text/javascript" charSet="utf-8"></script>
 </head>
 
 <body>
@@ -104,8 +105,8 @@ forward(75);
 <script src="../assets/board.js"></script>
 
 <section id="display">
-    <button class="btn btn-success" id="play" onclick="play()">&gt; play</button>
-    <button class="btn btn-error" onclick="stop()">! stop</button>
+    <button class="btn btn-success" id="play" onclick="play()"><i class="fas fa-play"></i> play</button>
+    <button class="btn btn-error" onclick="stop()"><i class="fas fa-stop"></i> stop</button>
     <canvas id="turtlecanvas" width="800" height="1080"></canvas>
     <canvas id="imagecanvas" width="800" height="1080" style="display: block; top: 0px; position: absolute;"></canvas>
 </section>

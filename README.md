@@ -34,32 +34,15 @@ an interactive traffic light, which we aim to get the kids to complete.
 
 ## Week 2 - Turtle
 
-In the second class, we want to start drilling the ideas of code execution order, and logical progression. Classicly,
-we do this with Turtle. Commands are implemented as a set of inline functions, removing the functional context idea we used in
-week 1 when operating our lights - we'll come back to this later.
+In the second class, we want to start drilling the ideas of code execution order, and logical progression. We do this with Turtle. 
+Commands are implemented as a set of inline functions, removing the functional context idea we used in
+week 1 when operating our lights.
 
 In our pre-loaded example, show how we can use penup() and pendown(), along with movement commands to navigate the canvas
-and 'write out' a word.
+and draw out a word or image.
 
 ### Outcomes
 * Introduce inline functions, and for loops.
-Friend requests
-Messages
-Notifications
-Account Settings
-Events
-Events
-Calendar
-We're gonna have some people round, come yeah?
-Birthdays
-Discover
-Hosting1
-Create Event
-English (UK) · English (US) · Polski · Español · Português (Brasil)
-Privacy · Terms · Advertising · AdChoices
-· Cookies ·
-More
-Facebook © 2018
 * Get comfortable with directions, angles, movements in 2D space.
 * Show how we might programatically draw more complex shapes.
 
@@ -68,3 +51,6 @@ Facebook © 2018
 ### Going Further
 * We define a function circle() in our example - can kids implement their own?
 * Turtle isn't only white, we can set colour with colour(r 0-255, g 0-255, b 0-255, a 0-1)
+
+## Week 3 - Painting by Pixels
+

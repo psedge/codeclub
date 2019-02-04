@@ -1,3 +1,5 @@
+var endpoint = 'https://82hi60j20m.execute-api.eu-west-1.amazonaws.com/prod/token/';
+
 var editor = ace.edit("code");
 editor.setTheme("ace/theme/monokai");
 editor.session.setMode("ace/mode/javascript");
@@ -40,7 +42,7 @@ async function playCode() {
             block = "";
             depth = 0;
         } catch (err) {
-            console.log(err)
+            alert(err)
         }
         await new Promise(resolve => setTimeout(resolve, lineWait));
     }
@@ -48,3 +50,22 @@ async function playCode() {
     document.getElementById("play").disabled = false;
 }
 
+function save() {
+    $.ajax({type: 'post', url: endpoint + $('#username').val() + "-" + $('#week').val(), data: editor.getValue(), dataType: 'json'})
+        .done(function(res) {
+            console.log('Saved')
+        })
+        .fail(function (err) {
+            console.log(err);
+        });
+}
+
+$('textarea').change(function() {
+    localStorage.setItem("code", editor.getValue());
+});
+
+$(document).ready(function() {
+    if (localStorage.getItem("code") != null) {
+        editor.setValue(localStorage.getItem('code'))
+    }
+});
