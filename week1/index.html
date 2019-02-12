@@ -11,6 +11,8 @@
     <script src="../assets/src-noconflict/ace.js" type="text/javascript" charSet="utf-8"></script>
     <script src="../assets/jquery-3.3.1.min.js" type="text/javascript" charSet="utf-8"></script>
     <script src="../assets/jquery-ui.min.js" type="text/javascript" charSet="utf-8"></script>
+    <script src="https://unpkg.com/popper.js@1/dist/umd/popper.min.js"></script>
+    <script src="https://unpkg.com/tippy.js@4"></script>
 
     <style type="text/css" media="screen">
         section#order { width: 80% }
@@ -21,10 +23,25 @@
 <body>
 <section id="order">
     <header>
-        <h2>Traffic Lights</h2>
-        <p>Can you code a traffic light to show in the right order?</p>
-        <input type="text" id="username" />
-        <input type="hidden" id="week" value="1"/>
+        <div class="float-left">
+            <h2>Traffic Lights</h2>
+            <p>Can you code a traffic light to show in the right order?</p>
+        </div>
+        <div class="float-right">
+            <input type="text" id="username" />
+            <input type="hidden" id="week" value="1"/>
+            <i class="fa fa-question" data-tippy-content="
+                <strong>light.setColour('red')</strong><br/><span>Sets the colour of the light to the string you pass</span><br/>
+                <strong>light.on()</strong><br/><span>Turns the light on</span><br/>
+                <strong>light.off()</strong><br/><span>Turns the light off</span><br/>
+                <strong>light.setHeight('200px')</strong><br/><span>Sets the height of the light</span><br/>
+                <strong>light.setWidth('200px')</strong><br/><span>Sets the width of the light</span><br/>
+                <strong>light.shake()</strong><br/><span>Shakes the light side-to-side</span><br/>
+                <strong>light.bounce()</strong><br/><span>Bounces the light up and down</span><br/>
+                <strong>light.puff()</strong><br/><span>Makes the light disappear</span><br/>
+                <strong>light.pulse()</strong><br/><span>Turns the light on and off quickly</span><br/>
+"></i>
+        </div>
     </header>
     <main>
 <div id="code">// This is the code that will run when we press 'play'
@@ -48,13 +65,6 @@ topLight.off();
 middleLight.off();
 
 // What do we want to do next? (hint: the bottom light turns on!)
-
-
-
-
-
-// We can also call the following functions on the lights: .setHeight, .setWidth, .shake, .bounce, .puff, .pulse
-// Try them out!
         </div>
     </main>
 </section>
@@ -67,9 +77,10 @@ middleLight.off();
 </section>
 
 <script src="../assets/d3.v3.min.js"></script>
-<script src="../assets/board.js"></script>
+<script id="board" src="../assets/board.js" week="1"></script>
 
 <script>
+
     lineWait = 400;
     function play() { playCode() }
 

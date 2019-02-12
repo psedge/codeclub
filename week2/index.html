@@ -14,17 +14,36 @@
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+SC" rel="stylesheet">
     <script src="../assets/src-noconflict/ace.js" type="text/javascript" charSet="utf-8"></script>
     <script src="../assets/jquery-3.3.1.min.js" type="text/javascript" charSet="utf-8"></script>
+    <script src="https://unpkg.com/popper.js@1/dist/umd/popper.min.js"></script>
+    <script src="https://unpkg.com/tippy.js@4"></script>
+
 </head>
 
 <body>
 <section id="order">
     <header>
-        <h2>Turtle</h2>
-        <p>Can you code the turtle to create patterns on the page?</p>
+        <div class="float-left">
+            <h2>Turtle</h2>
+            <p>Can you code the turtle to create patterns on the page?</p>
+        </div>
+        <div class="float-right">
+            <input type="text" id="username" />
+            <input type="hidden" id="week" value="1"/>
+            <i class="fa fa-question" data-tippy-content="
+                <strong>forward(10)</strong><br/><span>Moves forward 10 places</span><br/>
+                <strong>left(90)</strong><br/><span>Turns left 90 degrees</span><br/>
+                <strong>right(90)</strong><br/><span>Turns right 90 degrees</span><br/>
+                <strong>angle(180)</strong><br/><span>Sets the angle to 180</span><br/>
+                <strong>penup()</strong><br/><span>Brings the pen up (stops drawing)</span><br/>
+                <strong>pendown()</strong><br/><span>Puts the pen down (starts drawing)</span><br/>
+                <strong>clear()</strong><br/><span>Clears the board</span><br/>
+                <strong>goto(0, 0)</strong><br/><span>Goes to coords 0,0</span><br/>
+"></i>
+        </div>
     </header>
     <main>
-<div id="code">// Let's move the turtle forward 50 places
-forward(50);
+<div id="code">// Let's move the turtle forward 150 places
+forward(150);
 
 // Great, now turn him 90* to the left
 left(90);
@@ -102,7 +121,7 @@ forward(75);
     </main>
 </section>
 
-<script src="../assets/board.js"></script>
+<script id="board" src="../assets/board.js" week="2"></script>
 
 <section id="display">
     <button class="btn btn-success" id="play" onclick="play()"><i class="fas fa-play"></i> play</button>
@@ -114,7 +133,7 @@ forward(75);
 <script src="../assets/d3.v3.min.js"></script>
 <script src="../assets/turtle.js" type="text/javascript" charSet="utf-8"></script>
 <script>
-    lineWait = 400;
+    lineWait = 10;
     colour(255, 255, 255, 1);
     function play() {
         clear();

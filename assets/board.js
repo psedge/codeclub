@@ -12,10 +12,13 @@ var stopped = false;
 function stop() {
     stopped = true;
     document.getElementById("play").disabled = false;
+    editor.setReadOnly(false)
 }
 
 // Code play callback
 async function playCode() {
+    stop();
+    stopped = false;
     document.getElementById("play").disabled = true;
     
     editor.setReadOnly(true);
@@ -42,7 +45,9 @@ async function playCode() {
             block = "";
             depth = 0;
         } catch (err) {
-            alert(err)
+            alert(err);
+            stop();
+            return;
         }
         await new Promise(resolve => setTimeout(resolve, lineWait));
     }
@@ -60,12 +65,22 @@ function save() {
         });
 }
 
-$('textarea').change(function() {
-    localStorage.setItem("code", editor.getValue());
-});
+document.getElementsByTagName('textarea')[0].onkeydown = function (ev) {
+    localStorage.setItem("week" + document.getElementById("board").getAttribute('week'), editor.getValue());
+};
 
 $(document).ready(function() {
-    if (localStorage.getItem("code") != null) {
-        editor.setValue(localStorage.getItem('code'))
+    if (localStorage.getItem("week" + document.getElementById("board").getAttribute('week')) != null) {
+        editor.setValue(localStorage.getItem("week" + document.getElementById("board").getAttribute('week')))
     }
 });
+
+function superReset() {
+    localStorage.clear()
+}
+
+tippy('i', { maxWidth: 500 });
+
+async function wait(time) {
+    await new Promise(resolve => setTimeout(resolve, time));
+}

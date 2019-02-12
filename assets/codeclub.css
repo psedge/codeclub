@@ -13,14 +13,19 @@ header {
     padding: 10px;
 }
 header section { position: absolute; float: left; }
+header div.float-left {
+    margin: -10px;
+    padding: 10px;
+    height: 75px
+}
 header section p {
     margin-top: -10px;
     font-size: 10pt;
 }
 header input#username {
-    position: absolute;
-    top: 15px;
-    right: 21%;
+    position: relative;
+    top: 5px;
+    right: 0;
     width: 150px;
     background-color: rgba(0,0,0,0.05);
     padding: 10px;
@@ -61,8 +66,8 @@ section#order, section#display {
     height: 100vh;
 }
 
-section#order { width: 60% }
-section#display { width: 40%; }
+section#order { width: 50% }
+section#display { width: 50%; }
 
 section#order a {
     position: relative;
@@ -78,10 +83,29 @@ section#order a {
 section#order a:first-of-type {
     margin-right: 25px;
 }
-
+i.fa-question {
+    float: right;
+    display: inline-block;
+    margin: 13px;
+    padding: 6px;
+    border-radius: 100px;
+}
+i.fa-question:hover {
+    background-color: #fafafa;
+}
+.tippy-content {
+    font-size: 10pt !important;
+}
+.tippy-content strong { float: left; }
+.tippy-content span { float: left; margin-left: 15px; }
 section#order h2 {
+    font-weight: bold;
     margin-top: 0;
     font-size: 12pt;
+}
+
+section#order p {
+    clear: both;
 }
 
 section#order a:first-of-type { background-color: #111; color: lightgreen }

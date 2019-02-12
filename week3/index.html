@@ -16,50 +16,74 @@
 
     <script src="../assets/src-noconflict/ace.js" type="text/javascript" charSet="utf-8"></script>
     <script src="../assets/jquery-3.3.1.min.js" type="text/javascript" charSet="utf-8"></script>
+    <script src="https://unpkg.com/popper.js@1/dist/umd/popper.min.js"></script>
+    <script src="https://unpkg.com/tippy.js@4"></script>
 </head>
 
 <body>
 <section id="order">
     <header>
-        <section>
+        <div class="float-left">
             <h2>Painting by Pixels</h2>
             <p>Colour the pixels to make a picture</p>
-        </section>
-        <button class="btn" id="save" onclick="save()"><i class="fas fa-save"></i> save</button>
+        </div>
+        <div class="float-right">
+            <input type="text" id="username" />
+            <input type="hidden" id="week" value="1"/>
+            <i class="fa fa-question" data-tippy-content="
+                <strong>pixel(x,y).setColour('red')</strong><br/><span>Sets the colour of the pixel at x,y to 'red'</span><br/>
+            "></i>
+        </div>
     </header>
     <main>
 <div id="code">// Eyes first
-pixel(7,4).style.backgroundColor = "grey";
-pixel(8,4).style.backgroundColor = "grey";
-pixel(7,5).style.backgroundColor = "grey";
-pixel(8,5).style.backgroundColor = "blue";
+    pixel(7,4).setColour("lightgrey");
+    pixel(8,4).setColour("lightgrey");
+    pixel(7,5).setColour("lightgrey");
+    pixel(8,5).setColour("blue");
 
-pixel(11,4).style.backgroundColor = "grey";
-pixel(12,4).style.backgroundColor = "grey";
-pixel(11,5).style.backgroundColor = "grey";
-pixel(12,5).style.backgroundColor = "blue";
+    pixel(11,4).setColour("lightgrey");
+    pixel(12,4).setColour("lightgrey");
+    pixel(11,5).setColour("lightgrey");
+    pixel(12,5).setColour("blue");
 
-// then the nose
-pixel(9,7).style.backgroundColor = "yellow";
-pixel(10,7).style.backgroundColor = "yellow";
+    // then the nose
+    pixel(9,7).setColour("yellow");
+    pixel(10,7).setColour("yellow");
 
-// then the mouth
-pixel(5,9).style.backgroundColor = "#fff";
-pixel(6,9).style.backgroundColor = "#fff";
-pixel(7,10).style.backgroundColor = "#fff";
-pixel(8,10).style.backgroundColor = "#fff";
-pixel(9,10).style.backgroundColor = "#fff";
-pixel(10,10).style.backgroundColor = "#fff";
-pixel(11,10).style.backgroundColor = "#fff";
-pixel(12,10).style.backgroundColor = "#fff";
-pixel(13,9).style.backgroundColor = "#fff";
-pixel(14,9).style.backgroundColor = "#fff";
+    // then the mouth
+    var openMouth = function() {
+    pixel(5,9).setColour("#fff");
+    pixel(6,9).setColour("#fff");
+    pixel(7,9).setColour("#fff");
+    pixel(8,9).setColour("#fff");
+    pixel(9,9).setColour("#fff");
+    pixel(10,9).setColour("#fff");
+    pixel(11,9).setColour("#fff");
+    pixel(12,9).setColour("#fff");
+    pixel(13,9).setColour("#fff");
+    pixel(14,9).setColour("#fff");
+
+    pixel(6,10).setColour("#fff");
+    pixel(6,11).setColour("#fff");
+    pixel(13,10).setColour("#fff");
+    pixel(13,11).setColour("#fff");
+
+    pixel(7,11).setColour("#fff");
+    pixel(8,11).setColour("#fff");
+    pixel(9,11).setColour("#fff");
+    pixel(10,11).setColour("#fff");
+    pixel(11,11).setColour("#fff");
+    pixel(12,11).setColour("#fff");
+    }
+
+    openMouth();
 
 </div>
     </main>
 </section>
 
-<script src="../assets/board.js"></script>
+<script id="board" src="../assets/board.js" week="3"></script>
 
 <section id="display" class="week3">
     <button class="btn btn-success" id="play" onclick="play()"><i class="fas fa-play"></i> play</button>
@@ -79,13 +103,18 @@ pixel(14,9).style.backgroundColor = "#fff";
     for (var y=0; y<20; y++) {
         $("#display").append("<div class='row'>");
         for (var x=0; x<20; x++) {
-            $("#display .row:last-of-type").append("<div id='"+y+","+x+"'></div>");
+            $("#display .row:last-of-type").append("<div data-tippy-content='" + x + ", " + y + "' class='pixel' id='"+x+","+y+"'></div>");
         }
         $("#display").append("</div>");
     }
 
-    function pixel(x, y) {
-        return document.getElementById(y+","+x)
+    function pixel(x, y) { return document.getElementById(x+","+y) }
+
+    var pixels = document.getElementsByClassName('pixel');
+    for (pix in pixels) {
+        pixels[pix].setColour = function(color) { this.style.backgroundColor = color };
     }
+
+    tippy('.pixel')
 </script>
 </body>
