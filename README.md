@@ -4,9 +4,10 @@ The purpose of these interactive examples is to give 7-10 year olds an easy intr
 concepts using Javascript. There are a number of great resources out there already, but I found that most 
 of these were either entirely graphical (Scratch), or paid.
 
-Schools teaching IT in their curriculum may have already introduced the kids to
-Scratch, and some parents may have already done some coding with them outside of the classroom- so these exercises try to start off slow
-enough to be widely inclusive, whilst still offering routes to explore, create, and h4ck.
+Schools teaching IT in their curriculum may have already introduced the kids to Scratch, and some parents may have 
+already done some coding with them outside of the classroom- so these exercises try to start off slow enough to be
+ widely inclusive, whilst still offering routes to explore, create, and h4ck. I've found that kids are more excited by 
+ these exercises than scratch; there is something cool about **writing** code.
 
 Importantly, we reuse components between weeks, providing an approachable framework for future projects in this style.
 
@@ -54,3 +55,25 @@ and draw out a word or image.
 
 ## Week 3 - Painting by Pixels
 
+For the third exercise we're going to try to draw pixel art using a 20x20 grid. So far my experience has been that in Scratch
+programs, kids are fairly confident with coordinates by year 4 and 5, but patchy before that - moving a sprite left or right
+has taken them a few questions about whether movement should be positive or negative in each plane. For loops and functions
+have proven complex to get the kids using confidently, so we can explore that further here.
+
+This exercise allows them to see the co-ordiantes by hovering over the square, and gives them an easy way to reinforce that 
+learning. Hopefully, free painting here will give some funny / interesting results. 
+
+### Outcomes
+* Solidify understanding of the cartesian co-ordinate system
+* Continue to explore functions and loops
+ 
+### Exercises
+* Make simple shapes - triangle, square etc.
+* How would we make more complicated patterns? eg. a spiral, or figure-of-8?
+* Look and see how we've written 'CODe' in the example, can you write your name?
+
+![Week Three](static/week3.png)
+
+### Going Further
+* This has been built with the intention of them being able to make animations - how can they achieve that using functions
+and the wait(100) method?
