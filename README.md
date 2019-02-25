@@ -47,6 +47,11 @@ and draw out a word or image.
 * Get comfortable with directions, angles, movements in 2D space.
 * Show how we might programatically draw more complex shapes.
 
+### Exercises
+* Make simple shapes - triangle, square etc.
+* How would we make more complicated patterns? eg. a spiral, or figure-of-8?
+* Look and see how we've written 'CODe' in the example, can you write your name?
+
 ![Week Two](static/week2.png)
 
 ### Going Further
@@ -66,11 +71,7 @@ learning. Hopefully, free painting here will give some funny / interesting resul
 ### Outcomes
 * Solidify understanding of the cartesian co-ordinate system
 * Continue to explore functions and loops
- 
-### Exercises
-* Make simple shapes - triangle, square etc.
-* How would we make more complicated patterns? eg. a spiral, or figure-of-8?
-* Look and see how we've written 'CODe' in the example, can you write your name?
+
 
 ![Week Three](static/week3.png)
 
