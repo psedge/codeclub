@@ -37,47 +37,47 @@
     </header>
     <main>
 <div id="code">// Eyes first
-    pixel(7,4).setColour("lightgrey");
-    pixel(8,4).setColour("lightgrey");
-    pixel(7,5).setColour("lightgrey");
-    pixel(8,5).setColour("blue");
+pixel(7,4).setColour("lightgrey");
+pixel(8,4).setColour("lightgrey");
+pixel(7,5).setColour("lightgrey");
+pixel(8,5).setColour("blue");
 
-    pixel(11,4).setColour("lightgrey");
-    pixel(12,4).setColour("lightgrey");
-    pixel(11,5).setColour("lightgrey");
-    pixel(12,5).setColour("blue");
+pixel(11,4).setColour("lightgrey");
+pixel(12,4).setColour("lightgrey");
+pixel(11,5).setColour("lightgrey");
+pixel(12,5).setColour("blue");
 
-    // then the nose
-    pixel(9,7).setColour("yellow");
-    pixel(10,7).setColour("yellow");
+// then the nose
+pixel(9,7).setColour("yellow");
+pixel(10,7).setColour("yellow");
 
-    // then the mouth
-    var openMouth = function() {
-    pixel(5,9).setColour("#fff");
-    pixel(6,9).setColour("#fff");
-    pixel(7,9).setColour("#fff");
-    pixel(8,9).setColour("#fff");
-    pixel(9,9).setColour("#fff");
-    pixel(10,9).setColour("#fff");
-    pixel(11,9).setColour("#fff");
-    pixel(12,9).setColour("#fff");
-    pixel(13,9).setColour("#fff");
+// then the mouth
+var openMouth = function() {
     pixel(14,9).setColour("#fff");
+    pixel(13,9).setColour("#fff");
+    pixel(12,9).setColour("#fff");
+    pixel(11,9).setColour("#fff");
+    pixel(10,9).setColour("#fff");
+    pixel(9,9).setColour("#fff");
+    pixel(8,9).setColour("#fff");
+    pixel(7,9).setColour("#fff");
+    pixel(6,9).setColour("#fff");
+    pixel(5,9).setColour("#fff");
 
-    pixel(6,10).setColour("#fff");
-    pixel(6,11).setColour("#fff");
     pixel(13,10).setColour("#fff");
     pixel(13,11).setColour("#fff");
+    pixel(6,10).setColour("#fff");
+    pixel(6,11).setColour("#fff");
 
-    pixel(7,11).setColour("#fff");
-    pixel(8,11).setColour("#fff");
-    pixel(9,11).setColour("#fff");
-    pixel(10,11).setColour("#fff");
-    pixel(11,11).setColour("#fff");
     pixel(12,11).setColour("#fff");
-    }
+    pixel(11,11).setColour("#fff");
+    pixel(10,11).setColour("#fff");
+    pixel(9,11).setColour("#fff");
+    pixel(8,11).setColour("#fff");
+    pixel(7,11).setColour("#fff");
+}
 
-    openMouth();
+openMouth();
 
 </div>
     </main>
@@ -100,7 +100,7 @@
         playCode();
     }
     var i=0;
-    for (var y=0; y<20; y++) {
+    for (var y=20; y>0; y--) {
         $("#display").append("<div class='row'>");
         for (var x=0; x<20; x++) {
             $("#display .row:last-of-type").append("<div data-tippy-content='" + x + ", " + y + "' class='pixel' id='"+x+","+y+"'></div>");
