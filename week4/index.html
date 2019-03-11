@@ -91,9 +91,9 @@ if (i == 5) {
 // Check the command set by hovering over the question mark above ^
 // These are the variables you need to check
 // Each time, the values will either be 'closed', 'mole', or 'penguin'
-var hole1 = 'closed';
-var hole2 = 'mole';
-var hole3 = 'penguin';
+hole(1) == 'closed';
+hole(2) == 'mole';
+hole(3) == 'penguin';
 
 // The program will run 10 times when you hit play, try to
 //  write conditions to get all 10 points!
@@ -116,7 +116,8 @@ hit(1);
 </section>
 
 <script>
-    hits = { 1: false, 2: false, 3: false };
+    holes = { 0: 'empty', 1: 'empty', 2: 'empty' };
+    hits = { 0: false, 1: false, 2: false };
     points = 0;
     lineWait = 0;
     condition = true;
@@ -124,7 +125,7 @@ hit(1);
     // Set up aliases incase they forget to stringify it
     mole = 'mole';
     penguin = 'penguin';
-    empty = 'empty;';
+    empty = 'empty';
 
     do_something = function() {};
 
@@ -132,17 +133,21 @@ hit(1);
         points = val;
         $('section#display h2').html(val + ' points')
     };
-week
+
     hit = function(pos) {
-        hits[pos] = true;
+        hits[pos-1] = true;
     };
 
     setHole = function(pos, image) {
+        if (pos == 'left') holes[0] = image;
+        if (pos == 'middle') holes[1] = image;
+        if (pos == 'right') holes[2] = image;
+        
         $('img#' + pos).attr('src', image + '.png')
     };
 
     check = function(expected) {
-        if (hits[0] != expected[0] || hits[1] != expected[1] || hits[2] != expected[2]) {
+        if (hits[0] != expected[1] || hits[1] != expected[2] || hits[2] != expected[3]) {
             points -= 1;
             setPoints(points);
             return;
@@ -151,12 +156,18 @@ week
         setPoints(points);
     }
 
+    hole = function(pos) {
+        if (pos == 1) return holes[0]
+        if (pos == 2) return holes[1]
+        if (pos == 3) return holes[2]
+    };
+
     setPoints(0);
 
     function play() {
         // reset points and hits
         setPoints(0);
-        hits = { 1: false, 2: false, 3: false };
+        hits = { 0: false, 1: false, 2: false };
         document.getElementById("play").disabled = true;
 
         // First round
@@ -165,7 +176,7 @@ week
         setHole('right', 'penguin');
         playCode(true, false);
         check({ 1: true, 2: false, 3: false });
-        hits = { 1: false, 2: false, 3: false }
+        hits = { 0: false, 1: false, 2: false }
 
         // Second round
         setTimeout(function() {
@@ -174,7 +185,7 @@ week
             setHole('right', 'empty');
             playCode(true, false);
             check({ 1: true, 2: true, 3: false });
-            hits = { 1: false, 2: false, 3: false };
+            hits = { 0: false, 1: false, 2: false };
 
             // Third round
             setTimeout(function() {
@@ -183,7 +194,7 @@ week
                 setHole('right', 'penguin');
                 playCode(true, false);
                 check({ 1: false, 2: false, 3: false });
-                hits = { 1: false, 2: false, 3: false }
+                hits = { 0: false, 1: false, 2: false }
 
                 // Fourth round
                 setTimeout(function() {
@@ -192,7 +203,7 @@ week
                     setHole('right', 'mole');
                     playCode(true, false);
                     check({ 1: true, 2: true, 3: true });
-                    hits = { 1: false, 2: false, 3: false }
+                    hits = { 0: false, 1: false, 2: false }
 
                     // Fifth round
                     setTimeout(function() {
@@ -201,7 +212,7 @@ week
                         setHole('right', 'penguin');
                         playCode(true, false);
                         check({ 1: false, 2: true, 3: false });
-                        hits = { 1: false, 2: false, 3: false }
+                        hits = { 0: false, 1: false, 2: false }
 
                         // Sixth round
                         setTimeout(function() {
@@ -210,7 +221,7 @@ week
                             setHole('right', 'empty');
                             playCode(true, false);
                             check({ 1: true, 2: true, 3: false });
-                            hits = { 1: false, 2: false, 3: false }
+                            hits = { 0: false, 1: false, 2: false }
 
                             // Seventh round
                             setTimeout(function() {
@@ -219,7 +230,7 @@ week
                                 setHole('right', 'empty');
                                 playCode(true, false);
                                 check({ 1: false, 2: false, 3: false });
-                                hits = { 1: false, 2: false, 3: false }
+                                hits = { 0: false, 1: false, 2: false }
 
                                 // Eight round
                                 setTimeout(function() {
@@ -228,7 +239,7 @@ week
                                     setHole('right', 'empty');
                                     playCode(true, false);
                                     check({ 1: false, 2: false, 3: false });
-                                    hits = { 1: false, 2: false, 3: false }
+                                    hits = { 0: false, 1: false, 2: false }
 
                                     // Ninth round
                                     setTimeout(function() {
@@ -237,7 +248,7 @@ week
                                         setHole('right', 'mole');
                                         playCode(true, false);
                                         check({ 1: false, 2: true, 3: true });
-                                        hits = { 1: false, 2: false, 3: false }
+                                        hits = { 0: false, 1: false, 2: false }
 
                                         // Tenth round
                                         setTimeout(function() {
@@ -246,7 +257,7 @@ week
                                             setHole('right', 'mole');
                                             playCode(true, false);
                                             check({ 1: true, 2: false, 3: true });
-                                            hits = { 1: false, 2: false, 3: false }
+                                            hits = { 0: false, 1: false, 2: false }
 
                                             document.getElementById("play").disabled = false;
                                         }, 1000)
