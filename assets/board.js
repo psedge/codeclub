@@ -63,7 +63,7 @@ function save() {
         .fail(function (err) {
             console.log(err);
         });
-}disable
+}
 
 document.getElementsByTagName('textarea')[0].onkeydown = function (ev) {
     localStorage.setItem("week" + document.getElementById("board").getAttribute('week'), editor.getValue());
