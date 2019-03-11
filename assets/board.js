@@ -9,17 +9,17 @@ editor.setOptions({
 document.getElementById('code').style.fontSize='15px';
 
 var stopped = false;
-function stop() {
+function stop(disable = true) {
     stopped = true;
-    document.getElementById("play").disabled = false;
+    if (disable) document.getElementById("play").disabled = false;
     editor.setReadOnly(false)
 }
 
 // Code play callback
-async function playCode() {
-    stop();
+async function playCode(quick = false, disable = true) {
+    stop(disable);
     stopped = false;
-    document.getElementById("play").disabled = true;
+    if (disable) {document.getElementById("play").disabled = true;}
     
     editor.setReadOnly(true);
     lines = editor.getValue().split("\n");
@@ -32,7 +32,7 @@ async function playCode() {
         editor.selection.clearSelection();
         editor.moveCursorTo(line, 0);
         if (lines[line].substring(0, 2) == '//' || lines[line].substring(0,2) == "") {
-            await new Promise(resolve => setTimeout(resolve, 50));
+            if (!quick) await new Promise(resolve => setTimeout(resolve, 50));
             continue;
         }
 
@@ -46,13 +46,13 @@ async function playCode() {
             depth = 0;
         } catch (err) {
             alert(err);
-            stop();
+            stop(disable);
             return;
         }
-        await new Promise(resolve => setTimeout(resolve, lineWait));
+        if (!quick) await new Promise(resolve => setTimeout(resolve, lineWait));
     }
     editor.setReadOnly(false)
-    document.getElementById("play").disabled = false;
+    if (disable) {document.getElementById("play").disabled = false;}
 }
 
 function save() {
@@ -63,7 +63,7 @@ function save() {
         .fail(function (err) {
             console.log(err);
         });
-}
+}disable
 
 document.getElementsByTagName('textarea')[0].onkeydown = function (ev) {
     localStorage.setItem("week" + document.getElementById("board").getAttribute('week'), editor.getValue());

@@ -136,15 +136,6 @@ button i {
 
 section#display button:nth-of-type(2) { margin-left: 100px; }
 
-section#display.week1 div {
-    width: 100px;
-    height: 100px;
-    display: block;
-    clear: both;
-    margin: 28% auto 28% auto;
-    border-radius: 50px;
-    border: 2px solid whitesmoke;
-}
 
 section#display.week3 div div {
     width: 5%;

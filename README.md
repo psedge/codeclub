@@ -78,3 +78,20 @@ learning. Hopefully, free painting here will give some funny / interesting resul
 ### Going Further
 * This has been built with the intention of them being able to make animations - how can they achieve that using functions
 and the wait(100) method?
+
+## Week 4 - Whack-a-Mole
+
+In the fourth week we're recreating the arcade 'Whack-a-mole' game, and trying to get comfortable using if conditions to check
+the state of the board and hit() the appropriate holes. Your points increase for correct answers, and decrease for incorrect 
+answers. It should only take several lines to implement the conditions necessary to satisfy the rules, but there are test cases
+for each of them - so they must all be implemented correctly!
+
+### Outcomes
+* Introduce conditional statements & synatx for 'if'
+
+
+![Week Four](static/week4.png)
+
+### Going Further
+* Unfortunately, there isn't a lot of planned expansion here. I might come back to this and explore how easy it would
+be for the kids to add their own animals in etc.

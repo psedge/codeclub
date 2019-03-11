@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<head>
+    <title>Whack-a-mole</title>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="../assets/spectre.min.css">
+    <link href="../assets/codeclub.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+SC" rel="stylesheet">
+
+    <style type="text/css" media="screen">
+        section#order { width: 50% }
+        section#display { width: 50%; background-color: #fafafa; }
+        section#display h2 {
+            float: right;
+            margin: 10px;
+            color: #222;
+        }
+        section#display #holes {
+            width: 600px;
+            margin: calc(45vh) auto
+        }
+        section#display div img {
+            width: 125px;
+            height: 125px;
+            display: inline-block;
+            margin-left: 50px;
+            margin-right: 25px;
+            float: left;
+        }
+        section#display div img.mole {
+            background: none;
+            background-repeat: no-repeat;
+            background-image: url("mole.png")
+        }
+    </style>
+
+    <script src="../assets/src-noconflict/ace.js" type="text/javascript" charSet="utf-8"></script>
+    <script src="../assets/jquery-3.3.1.min.js" type="text/javascript" charSet="utf-8"></script>
+    <script src="https://unpkg.com/popper.js@1/dist/umd/popper.min.js"></script>
+    <script src="https://unpkg.com/tippy.js@4"></script>
+</head>
+
+<body>
+<section id="order">
+    <header>
+        <div class="float-left">
+            <h2>Whack-a-mole</h2>
+            <p>Try to score all 10 points by hitting the moles!</p>
+        </div>
+        <div class="float-right">
+            <input type="text" id="username" />
+            <input type="hidden" id="week" value="1"/>
+            <i class="fa fa-question" data-tippy-content="
+                <strong>hole(1)</strong><br/><span>Gets the current state of the first hole</span><br/>
+                <strong>hole(2)</strong><br/><span>Gets the current state of the second hole</span><br/>
+                <strong>hole(3)</strong><br/><span>Gets the current state of the third hole</span><br/>
+                <br/>
+                <strong>hit(1)</strong><br/><span>Hits the first hole, whacking a mole if there is one there.</span><br/>
+                ...<br/><br/>
+                <strong>if (a) { do_something() }</strong><br/><span>Runs the do_something function if a is true</span><br/>
+                <strong>if (!a) { do_something() }</strong><br/><span>Runs the do_something function if a is false</span><br/>
+                <strong>if (a && b) { do_something() }</strong><br/><span>Runs the do_something function if a AND b are true</span><br/>
+                <strong>if (a || b) { do_something() }</strong><br/><span>Runs the do_something function if a OR b are true</span><br/>
+
+            "></i>
+        </div>
+    </header>
+    <main>
+<div id="code">// This week we're going to play Whack-a-Mole - where you have to smack the mallet
+//  down on the correct hole when the mole appears
+
+// But there are some additional rules...
+// 1. You should only hit moles, not any other animal or empty holes
+// 2. You should only hit the hole that the mole has appeared in!
+// 3. You should hit all holes that have moles
+
+// You'll need to use if statements this week - which look like this:
+if (condition) {
+    do_something()
+}
+
+var i = 1;
+// So for example, if we wanted to show 'Correct!' if the
+//  variable 'i' is equal to 5 we could do this:
+if (i == 5) {
+    alert('Correct!')
+}
+
+// Check the command set by hovering over the question mark above ^
+// These are the variables you need to check
+// Each time, the values will either be 'closed', 'mole', or 'penguin'
+var hole1 = 'closed';
+var hole2 = 'mole';
+var hole3 = 'penguin';
+
+// The program will run 10 times when you hit play, try to
+//  write conditions to get all 10 points!
+hit(1);
+</div>
+    </main>
+</section>
+
+<script id="board" src="../assets/board.js" week="4"></script>
+
+<section id="display">
+    <button class="btn btn-success" id="play" onclick="play()"><i class="fas fa-play"></i> play</button>
+    <button class="btn btn-error" onclick="stop()"><i class="fas fa-stop"></i> stop</button>
+    <h2>0 points</h2>
+    <div id="holes">
+        <img id="left" src="empty.png"/>
+        <img id="middle" src="empty.png"/>
+        <img id="right" src="empty.png"/>
+    </div>
+</section>
+
+<script>
+    hits = { 1: false, 2: false, 3: false };
+    points = 0;
+    lineWait = 0;
+    condition = true;
+
+    // Set up aliases incase they forget to stringify it
+    mole = 'mole';
+    penguin = 'penguin';
+    empty = 'empty;';
+
+    do_something = function() {};
+
+    setPoints = function(val) {
+        points = val;
+        $('section#display h2').html(val + ' points')
+    };
+week
+    hit = function(pos) {
+        hits[pos] = true;
+    };
+
+    setHole = function(pos, image) {
+        $('img#' + pos).attr('src', image + '.png')
+    };
+
+    check = function(expected) {
+        if (hits[0] != expected[0] || hits[1] != expected[1] || hits[2] != expected[2]) {
+            points -= 1;
+            setPoints(points);
+            return;
+        }
+        points += 1
+        setPoints(points);
+    }
+
+    setPoints(0);
+
+    function play() {
+        // reset points and hits
+        setPoints(0);
+        hits = { 1: false, 2: false, 3: false };
+        document.getElementById("play").disabled = true;
+
+        // First round
+        setHole('left', 'mole');
+        setHole('middle', 'empty');
+        setHole('right', 'penguin');
+        playCode(true, false);
+        check({ 1: true, 2: false, 3: false });
+        hits = { 1: false, 2: false, 3: false }
+
+        // Second round
+        setTimeout(function() {
+            setHole('left', 'mole');
+            setHole('middle', 'mole');
+            setHole('right', 'empty');
+            playCode(true, false);
+            check({ 1: true, 2: true, 3: false });
+            hits = { 1: false, 2: false, 3: false };
+
+            // Third round
+            setTimeout(function() {
+                setHole('left', 'empty');
+                setHole('middle', 'penguin');
+                setHole('right', 'penguin');
+                playCode(true, false);
+                check({ 1: false, 2: false, 3: false });
+                hits = { 1: false, 2: false, 3: false }
+
+                // Fourth round
+                setTimeout(function() {
+                    setHole('left', 'mole');
+                    setHole('middle', 'mole');
+                    setHole('right', 'mole');
+                    playCode(true, false);
+                    check({ 1: true, 2: true, 3: true });
+                    hits = { 1: false, 2: false, 3: false }
+
+                    // Fifth round
+                    setTimeout(function() {
+                        setHole('left', 'penguin');
+                        setHole('middle', 'mole');
+                        setHole('right', 'penguin');
+                        playCode(true, false);
+                        check({ 1: false, 2: true, 3: false });
+                        hits = { 1: false, 2: false, 3: false }
+
+                        // Sixth round
+                        setTimeout(function() {
+                            setHole('left', 'mole');
+                            setHole('middle', 'mole');
+                            setHole('right', 'empty');
+                            playCode(true, false);
+                            check({ 1: true, 2: true, 3: false });
+                            hits = { 1: false, 2: false, 3: false }
+
+                            // Seventh round
+                            setTimeout(function() {
+                                setHole('left', 'empty');
+                                setHole('middle', 'empty');
+                                setHole('right', 'empty');
+                                playCode(true, false);
+                                check({ 1: false, 2: false, 3: false });
+                                hits = { 1: false, 2: false, 3: false }
+
+                                // Eight round
+                                setTimeout(function() {
+                                    setHole('left', 'penguin');
+                                    setHole('middle', 'penguin');
+                                    setHole('right', 'empty');
+                                    playCode(true, false);
+                                    check({ 1: false, 2: false, 3: false });
+                                    hits = { 1: false, 2: false, 3: false }
+
+                                    // Ninth round
+                                    setTimeout(function() {
+                                        setHole('left', 'penguin');
+                                        setHole('middle', 'mole');
+                                        setHole('right', 'mole');
+                                        playCode(true, false);
+                                        check({ 1: false, 2: true, 3: true });
+                                        hits = { 1: false, 2: false, 3: false }
+
+                                        // Tenth round
+                                        setTimeout(function() {
+                                            setHole('left', 'mole');
+                                            setHole('middle', 'empty');
+                                            setHole('right', 'mole');
+                                            playCode(true, false);
+                                            check({ 1: true, 2: false, 3: true });
+                                            hits = { 1: false, 2: false, 3: false }
+
+                                            document.getElementById("play").disabled = false;
+                                        }, 1000)
+                                    }, 1000)
+                                }, 1000)
+                            }, 1000)
+                        }, 1000)
+                    }, 1000)
+                }, 1000)
+            }, 1000)
+        }, 1000);
+
+    }
+</script>
+<script src="../assets/d3.v3.min.js"></script>
+</body>
