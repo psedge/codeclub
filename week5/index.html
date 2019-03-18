@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<head>
+    <title>Circle Clicker</title>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+          integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="../assets/spectre.min.css">
+    <link href="../assets/codeclub.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+SC" rel="stylesheet">
+
+    <style type="text/css" media="screen">
+        section#order {
+            width: 50%
+        }
+
+        section#display {
+            width: 50%;
+            background-color: #fafafa;
+        }
+
+        section#display h2 {
+            float: right;
+            margin: 10px;
+            color: #222;
+        }
+
+        section#display div {
+            position: relative;
+            border: 1px solid darkslategrey;
+            display: block;
+        }
+    </style>
+
+    <script src="../assets/src-noconflict/ace.js" type="text/javascript" charSet="utf-8"></script>
+    <script src="../assets/jquery-3.3.1.min.js" type="text/javascript" charSet="utf-8"></script>
+    <script src="https://unpkg.com/popper.js@1/dist/umd/popper.min.js"></script>
+    <script src="https://unpkg.com/tippy.js@4"></script>
+</head>
+
+<body>
+<section id="order">
+    <header>
+        <div class="float-left">
+            <h2>Circle Clicker</h2>
+            <p>Can you program the rules of game?</p>
+        </div>
+        <div class="float-right">
+            <input type="text" id="username"/>
+            <input type="hidden" id="week" value="1"/>
+            <i class="fa fa-question" data-tippy-content="<br/>
+                <strong>circles.spawn()</strong><br/><span>Spawn a new circle</span><br/>
+                <strong>circles.setSpeed(50)</strong><br/><span>Set the speed of all circles to 50</span><br/>
+                <strong>circles.click(function(circle) { ... })</strong><br/><span>Run a function when you click one of the circles</span><br/>
+                <br/>
+                <strong>circle.kill()</strong><br/><span>Make a single circle disappear</span><br/>
+                <strong>circle.getSpeed()</strong><br/><span>Returns the speed of the circle</span><br/>
+                <strong>circle.increaseSpeed(50)</strong><br/><span>Change the speed of a single circle by 50</span><br/>
+                <strong>circle.getSize()</strong><br/><span>Returns the size of the circle</span><br/>
+                <br/>
+                <strong>setPoints(number)</strong><br/><span>Set the points to <i>number</i></span><br/>
+                <strong>getPoints()</strong><br/><span>Get the current number of points</span>
+               "></i>
+        </div>
+    </header>
+    <main>
+        <div id="code">// In week 5 we're going to be making up the rules of a game
+// You can find the available functions by hovering on the question mark above ^^
+circles.setSpeed(50)
+circles.spawn()
+
+// The first thing you might want to do is define what happens when you click on the circle
+// This makes a box appear... how would you increase the points, or change the speed of the clicked circle?
+circles.click(function(circle) {
+    alert('YOU CLICKED THE CIRCLE')
+})
+
+// What else do you think you can do?
+        </div>
+    </main>
+</section>
+
+<script id="board" src="../assets/board.js" week="4"></script>
+
+<section id="display">
+    <button class="btn btn-success" id="play" onclick="play()"><i class="fas fa-play"></i> play</button>
+    <button class="btn btn-error" onclick="stop()"><i class="fas fa-stop"></i> stop</button>
+    <h2>0 points</h2>
+</section>
+
+<script>
+    points = 0;
+    lineWait = 0;
+    defaultSpeed = 50;
+    speeds = {};
+
+    setPoints = function (val) {
+        points = val;delete
+        $('section#display h2').html(val + ' points')
+    };
+    getPoints = function() {
+        return points;
+    }
+    getCircle = function(ctx) {
+        return {
+            kill: function() {
+                ctx.remove();
+            },
+            getSpeed: function() {
+                return Number.parseInt(speeds[$(ctx).attr('data-id')])
+            },
+            getSize: function() {
+                return Number.parseInt($(ctx).css('width'))
+            },
+            increaseSpeed: function(speed) {
+                speeds[$(ctx).attr('data-id')] = speeds[$(ctx).attr('data-id')] - (speed*10);
+            },
+            setSize: function(size) {
+                $(ctx).css('height', size);
+                $(ctx).css('width', size);
+            }
+        }
+    }
+    circles = {
+        spawn: function (size) {
+            if (!Number.isInteger(size)) {
+                return alert('size has to be a number')
+            }
+            var id = uniqueId();
+            $('section#display').append('<div data-id="' + id + '" style="top: ' + getRandomHeight() + 'px; left: ' + getRandomWidth() + 'px; background-color: #' + Math.floor(Math.random() * 16777215).toString(16) + '; height: ' + size + 'px; width: ' + size + 'px; border-radius: ' + size/2 + 'px"></div>')
+            speeds[id] = defaultSpeed;
+        },
+        click: function(callback) {
+            $('section#display div').click(function() {
+                callback(getCircle($(this)))
+            })
+        },
+        setSpeed: function(speed) {
+            defaultSpeed = 2000 - speed*10;
+        }
+    }
+
+    function start() {
+        $('section#display div').each(function() {
+            step(this)
+        })
+    }
+
+    // Single step in game sequence
+    function step(ctx) {
+        setTimeout(function() {
+            $(ctx).css('top', getRandomHeight());
+            $(ctx).css('left', getRandomWidth());
+
+            if (stopped == false) step(ctx)
+        }, speeds[$(ctx).attr('data-id')])
+    }
+
+    function play() {
+        setPoints(0);
+        $('section#display div').each(function() {
+            $(this).remove()
+        })
+
+        playCode(false, true, true);
+
+        setTimeout(start, 250);
+    }
+</script>
+<script src="../assets/d3.v3.min.js"></script>
+</body>

@@ -11,6 +11,8 @@ header {
     height: 75px;
     border-bottom: 1px solid #0a0a0a;
     padding: 10px;
+    overflow-x: hidden;
+    overflow-y: hidden;
 }
 header section { position: absolute; float: left; }
 header div.float-left {

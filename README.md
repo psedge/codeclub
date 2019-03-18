@@ -66,7 +66,8 @@ has taken them a few questions about whether movement should be positive or nega
 have proven complex to get the kids using confidently, so we can explore that further here.
 
 This exercise allows them to see the co-ordiantes by hovering over the square, and gives them an easy way to reinforce that 
-learning. Hopefully, free painting here will give some funny / interesting results. 
+learning. Hopefully, free painting here
+ will give some funny / interesting results. 
 
 ### Outcomes
 * Solidify understanding of the cartesian co-ordinate system
@@ -89,9 +90,27 @@ for each of them - so they must all be implemented correctly!
 ### Outcomes
 * Introduce conditional statements & synatx for 'if'
 
-
 ![Week Four](static/week4.png)
 
 ### Going Further
 * Unfortunately, there isn't a lot of planned expansion here. I might come back to this and explore how easy it would
 be for the kids to add their own animals in etc.
+
+## Week 5 - Circle Clicker
+
+It's week 5, we've introduced a number of core concepts - now we want to start getting comfortable with tying them together
+to produce visible results. In this exercise the kids are going to be given a framework to program their own game rules to
+make a 'Click the circle' game. They can increase points, change the size and speed of circles, and make them disappear. 
+
+### Outcomes
+
+* Get more comfortable with function call parameters, manipulating variables
+* Have fun playing their creations
+
+![Week Five](static/week5.png)
+
+### Going Further
+* It's easy to hide the circle once clicked and to increase points by 1 - can they make it so the points increase by a number
+based on how small and quick they're going? (circle.getSpeed() and circle.getSize())
+* What would happen if each time one circle popped, two sprung up in it's place?
+* Can circles appear and disappear at random moments even if they haven't been clicked?
